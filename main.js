@@ -203,7 +203,7 @@ server.on('request', function (req, res) {
     if (httpMethod === 'PATCH') {
         // 게시물 수정
         // PATCH http://localhost:3001/posts
-        if (url.startsWith("/posts")) {
+        if (target.startsWith("/posts")) {
             let rawData = "";        
       
             request.on("data", (chunk) => {
@@ -211,7 +211,7 @@ server.on('request', function (req, res) {
             });
 
             request.on("end", () => {
-                const postId = parseInt(url.split("/")[2]);
+                const postId = parseInt(target.split("/")[2]);
 
                 const data = JSON.parse(rawData);
 
@@ -229,8 +229,8 @@ server.on('request', function (req, res) {
     if (httpMethod === 'DELETE') {
         // 게시물 삭제
         // DELETE http://localhost:3001/posts
-        if (url.startsWith("/posts")) {
-            const postId = parseInt(url.split("/")[2]);
+        if (target.startsWith("/posts")) {
+            const postId = parseInt(target.split("/")[2]);
             
             const indexOfPostId = posts.findIndex((post) => post.id === postId);
             
